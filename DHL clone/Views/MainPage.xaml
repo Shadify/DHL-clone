@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="DHL_clone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DHL_clone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Email"></TextBlock>
+                <TextBox Name="EmailTB"></TextBox>
+                <TextBlock Text="Password"></TextBlock>
+                <PasswordBox Name="PasswordTB"/>
+                <Button Name="LoginButton" Content="Login" Click="LoginButton_Click" />
+            </StackPanel >
+        </Grid>
+    </Grid>
+</Page>
