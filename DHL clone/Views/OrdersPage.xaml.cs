@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DHL_clone.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,7 @@ namespace DHL_clone.Views
         public OrdersPage()
         {
             this.InitializeComponent();
+            OrderList.ItemsSource = Model.OrderSingleton.Instance.Orders;
         }
     }
 }

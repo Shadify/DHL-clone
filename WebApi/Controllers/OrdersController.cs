@@ -12,6 +12,7 @@ using WebApi;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/Orders")]
     public class OrdersController : ApiController
     {
         private EntityModel db = new EntityModel();
@@ -33,6 +34,27 @@ namespace WebApi.Controllers
             }
 
             return Ok(order);
+        }
+
+        // Get: api/Orders/id
+        [Route("{id:int}/OrdersUser")]
+        public IQueryable<Order> GetOrdersForUser(int id)
+        {
+            var OrdersUser = (from ord in db.Orders
+                              where ord.UserId == id
+                              join driver in db.Drivers on ord.DriverId equals driver.Id
+                              select new Order
+                              {
+                                  Id = ord.Id,
+                                  Description = ord.Description,
+                                  Date = ord.Date,
+                                  Products = ord.Products,
+                                  Driver = driver,
+                                  User = ord.User, 
+                              });
+
+
+            return OrdersUser;
         }
 
         // PUT: api/Orders/5

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DHL_clone.Model;
+using DHL_clone.ViewModel;
 using DHL_clone.Views;
 using Template10.Services.NavigationService;
 
@@ -40,6 +41,7 @@ namespace DHL_clone
             if (user != null)
             {
                 int loggedUserType = user.Type;
+                UserSingleton.Instance.loggedUser = user;
                 switch (loggedUserType)
                 {
                     case 1:
