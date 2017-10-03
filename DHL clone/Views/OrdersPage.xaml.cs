@@ -26,7 +26,6 @@ namespace DHL_clone.Views
         public OrdersPage()
         {
             this.InitializeComponent();
-            OrderList.ItemsSource = Model.OrderSingleton.Instance.Orders;
         }
     }
 }

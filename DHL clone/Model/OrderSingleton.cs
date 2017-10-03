@@ -11,15 +11,25 @@ namespace DHL_clone.Model
 {
     class OrderSingleton
     {
-        static OrderSingleton() { }
-        private static OrderSingleton _instance = new OrderSingleton();
-        public static OrderSingleton Instance { get { return _instance; } }
+        private static OrderSingleton _instance;
+
+        public static OrderSingleton Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new OrderSingleton();
+                }
+                return _instance;
+            }
+        }
+
 
         public ObservableCollection<Order> Orders { get; set; }
 
-        public OrderSingleton()
+        private OrderSingleton()
         {
-            Orders = new ObservableCollection<Order>();
             GetData();
         }
 

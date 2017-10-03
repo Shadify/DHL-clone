@@ -97,12 +97,13 @@
     </Compile>
     <Compile Include="Model\Driver.cs" />
     <Compile Include="Model\Order.cs" />
-    <Compile Include="ViewModel\OrderSingleton.cs" />
+    <Compile Include="Model\OrderSingleton.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Persistency\Persistency.cs" />
     <Compile Include="Persistency\PersistencyWebApi.cs" />
-    <Compile Include="ViewModel\UserSingleton.cs" />
+    <Compile Include="Model\UserSingleton.cs" />
+    <Compile Include="ViewModel\OrderVM.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
