@@ -33,7 +33,8 @@ namespace DHL_clone.Persistency
                     {
                         string OrdersData = response.Content.ReadAsStringAsync().Result;
 
-                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData, typeof(ObservableCollection<OrderDTO>));
+                        allOrders = (ObservableCollection<OrderDTO>) JsonConvert.DeserializeObject(OrdersData,
+                            typeof(ObservableCollection<OrderDTO>));
                     }
                     return allOrders;
                 }
@@ -43,6 +44,34 @@ namespace DHL_clone.Persistency
                 }
             }
         }
+
+        //Registration
+        public static async Task<User> Register(User User)
+        {
+            const string ServerUrl = "http://localhost:6738";
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                StringContent content =
+                    new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
+                try
+                {
+                    var response = client.PostAsync($"api/Users", content).Result;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Didn't register");
+                }
+                return User;
+            }
+        }
+
+
 
         //Login
         public static async Task<User> Login(User User)
@@ -57,7 +86,8 @@ namespace DHL_clone.Persistency
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                StringContent content = new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
+                StringContent content =
+                    new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
                 try
                 {
                     var response = client.PostAsync($"api/Users/login", content).Result;
@@ -65,7 +95,7 @@ namespace DHL_clone.Persistency
                     {
                         string Data = response.Content.ReadAsStringAsync().Result;
 
-                        user = (User)JsonConvert.DeserializeObject(Data, typeof(User));
+                        user = (User) JsonConvert.DeserializeObject(Data, typeof(User));
                         return user;
                     }
                     else
@@ -77,6 +107,38 @@ namespace DHL_clone.Persistency
                 catch (Exception ex)
                 {
                     return user;
+                }
+            }
+        }
+
+        //Get Drivers
+        public static async Task<ObservableCollection<Driver>> GetDrivers()
+        {
+            ObservableCollection<Driver> allDrivers = new ObservableCollection<Driver>();
+            const string ServerUrl = "http://localhost:6738";
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = client.GetAsync($"api/Drivers").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string DriverData = response.Content.ReadAsStringAsync().Result;
+
+                        allDrivers = (ObservableCollection<Driver>) JsonConvert.DeserializeObject(DriverData,
+                            typeof(ObservableCollection<Driver>));
+                    }
+                    return allDrivers;
+                }
+                catch (Exception ex)
+                {
+                    return null;
                 }
             }
         }

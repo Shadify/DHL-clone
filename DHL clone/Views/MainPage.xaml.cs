@@ -47,7 +47,7 @@ namespace DHL_clone
                 {
                     case 1:
                     {
-                        Frame.Navigate(typeof(OrdersPage), u.Id);
+                        Frame.Navigate(typeof(OrdersPage));
                         break;
                     }
                     case 0:

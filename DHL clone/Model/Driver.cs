@@ -13,5 +13,14 @@ namespace DHL_clone.Model
 
         public int Phone { get; set; }
         public int VehicleNr { get; set; }
+
+        public Driver(int id, string name, int phone, int vehicleNr)
+        {
+            Id = id;
+            Name = name;
+            Phone = phone;
+            VehicleNr = vehicleNr;
+        }
+        public Driver() { }
     }
 }

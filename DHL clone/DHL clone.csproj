@@ -98,6 +98,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\LoginHandler.cs" />
     <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\DriverSingleton.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDTO.cs" />
     <Compile Include="Model\OrderSingleton.cs" />
@@ -106,7 +107,11 @@
     <Compile Include="Persistency\Persistency.cs" />
     <Compile Include="Persistency\PersistencyWebApi.cs" />
     <Compile Include="Model\UserSingleton.cs" />
+    <Compile Include="ViewModel\DriverVM.cs" />
     <Compile Include="ViewModel\OrderVM.cs" />
+    <Compile Include="Views\DriversPage.xaml.cs">
+      <DependentUpon>DriversPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\DriversPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

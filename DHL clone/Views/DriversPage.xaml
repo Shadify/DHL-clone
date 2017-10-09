@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="DHL_clone.Views.DriversPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DHL_clone.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:DHL_clone.ViewModel"
+    xmlns:model="using:DHL_clone.Model"
+    mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewModel:DriverVM/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+        <TextBlock Text="Info of drivers page"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"/>
+        <ListView Grid.Row="1" Name="DriverList" ItemsSource="{Binding DriverSingleton.Drivers}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="Driver's Name" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="Phone Number" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Phone}"/>
+                        <TextBlock Text="Vehicle number" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding VehicleNr}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

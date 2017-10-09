@@ -21,7 +21,7 @@
         <TextBlock Text="Orders view page"
                    Grid.Row="0"
                    HorizontalAlignment="Center"/>
-
+        <Button Grid.Row="0" HorizontalAlignment="Center" Content="Drivers" Click="Button_Click" />
         <ListView Grid.Row="1" Name="OrderList" ItemsSource="{Binding OrderSingleton.Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>

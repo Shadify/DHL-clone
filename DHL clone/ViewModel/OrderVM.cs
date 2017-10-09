@@ -11,16 +11,14 @@ namespace DHL_clone.ViewModel
 {
     class OrderVM : INotifyPropertyChanged
     {
-        private Order _newOrder;
+        //For when creating Orders
+        //private Order _newOrder;
 
-        public Order NewOrder
-        {
-            get { return _newOrder; }
-            set { _newOrder = value; OnPropertyChanged(); }
-        }
-
-
-
+        //public Order NewOrder
+        //{
+        //    get { return _newOrder; }
+        //    set { _newOrder = value; OnPropertyChanged(); }
+        //}
 
         public OrderSingleton OrderSingleton { get; set; }
 
