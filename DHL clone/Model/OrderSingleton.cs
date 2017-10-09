@@ -26,16 +26,17 @@ namespace DHL_clone.Model
         }
 
 
-        public ObservableCollection<Order> Orders { get; set; }
+        public ObservableCollection<OrderDTO> Orders { get; set; }
 
         private OrderSingleton()
         {
+            Orders = new ObservableCollection<OrderDTO>();
             GetData();
         }
 
         private async void GetData()
         {
-            List<Order> tempOrders = new List<Order>(await PersistencyWebApi.GetOrdersForUser(UserSingleton.Instance.loggedUser.Id));
+            var tempOrders = await PersistencyWebApi.GetOrdersForUser(UserSingleton.Instance.loggedUser.Id);
             foreach (var or in tempOrders)
             {
                 Orders.Add(or);

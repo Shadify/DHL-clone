@@ -38,12 +38,12 @@ namespace WebApi.Controllers
 
         // Get: api/Orders/id
         [Route("{id:int}/OrdersUser")]
-        public IQueryable<Order> GetOrdersForUser(int id)
+        public IQueryable<OrdersDTO> GetOrdersForUser(int id)
         {
             var OrdersUser = (from ord in db.Orders
                               where ord.UserId == id
                               join driver in db.Drivers on ord.DriverId equals driver.Id
-                              select new Order
+                              select new OrdersDTO
                               {
                                   Id = ord.Id,
                                   Description = ord.Description,

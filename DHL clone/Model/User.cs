@@ -15,6 +15,7 @@ namespace DHL_clone.Model
         public int Phone { get; set; }
         public int Type { get; set; }
         public string Address { get; set; }
+        public List<Order> Orders { get; set; }
 
         public override string ToString()
         {

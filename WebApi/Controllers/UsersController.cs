@@ -91,21 +91,26 @@ namespace WebApi.Controllers
         [Route("login")]
         public IHttpActionResult LoginPerson(User log)
         {
-
-            var foundPerson = (from p in db.Users where p.email == log.email select p).Single();
-
-            if (foundPerson != null)
+            try
             {
-                if (foundPerson.password == log.password)
+                var foundPerson = (from p in db.Users where p.email == log.email select p).Single();
+                if (foundPerson != null)
                 {
-                    return Ok(foundPerson);
+                    if (foundPerson.password == log.password)
+                    {
+                        return Ok(foundPerson);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
                     return NotFound();
                 }
             }
-            else
+            catch (Exception e)
             {
                 return NotFound();
             }

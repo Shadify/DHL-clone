@@ -14,9 +14,9 @@ namespace DHL_clone.Persistency
     class PersistencyWebApi
     {
         //All orders for one user
-        public static async Task<ObservableCollection<Order>> GetOrdersForUser(int userId)
+        public static async Task<ObservableCollection<OrderDTO>> GetOrdersForUser(int userId)
         {
-            ObservableCollection<Order> allOrders = new ObservableCollection<Order>();
+            ObservableCollection<OrderDTO> allOrders = new ObservableCollection<OrderDTO>();
             const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
@@ -33,7 +33,7 @@ namespace DHL_clone.Persistency
                     {
                         string OrdersData = response.Content.ReadAsStringAsync().Result;
 
-                        allOrders = (ObservableCollection<Order>)JsonConvert.DeserializeObject(OrdersData, typeof(ObservableCollection<Order>));
+                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData, typeof(ObservableCollection<OrderDTO>));
                     }
                     return allOrders;
                 }
@@ -68,7 +68,10 @@ namespace DHL_clone.Persistency
                         user = (User)JsonConvert.DeserializeObject(Data, typeof(User));
                         return user;
                     }
-                    return user;
+                    else
+                    {
+                        return user;
+                    }
 
                 }
                 catch (Exception ex)

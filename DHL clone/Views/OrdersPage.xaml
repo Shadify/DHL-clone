@@ -26,8 +26,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
+                        <TextBlock Text="Order Id" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Id}"/>
-                        <TextBlock />
+                        <TextBlock Text="Date" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Date}"/>
+                        <TextBlock Text="Description" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Description}"/>
+                        <TextBlock Text="Products" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Products}" />
+                        <TextBlock Text="Driver Name" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Driver.Name}"/>
+                        <TextBlock Text="Driver Phone Number" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Driver.Phone}"/>
+                        <TextBlock Text="Driver Vehicle number" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Driver.VehicleNr}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

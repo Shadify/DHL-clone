@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,7 +39,7 @@ namespace DHL_clone
             u.Email = EmailTB.Text;
             u.Password = PasswordTB.Password;
             User user = await Persistency.PersistencyWebApi.Login(u);
-            if (user != null)
+            if (user.Email != null)
             {
                 int loggedUserType = user.Type;
                 UserSingleton.Instance.loggedUser = user;
@@ -58,6 +59,15 @@ namespace DHL_clone
                         break;
                 }
             }
+            else
+            {
+                new MessageDialog("Username and / or password does not match an account!").ShowAsync();
+            }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));
         }
     }
 }
