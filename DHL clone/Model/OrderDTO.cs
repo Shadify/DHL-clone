@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DHL_clone.Model
 {
-    class OrderDTO
+    public class OrderDTO
     {
         public int Id { get; set; }
         public string Description { get; set; }

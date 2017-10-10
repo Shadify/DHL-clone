@@ -57,8 +57,7 @@ namespace DHL_clone.Persistency
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                StringContent content =
-                    new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
                 try
                 {
                     var response = client.PostAsync($"api/Users", content).Result;

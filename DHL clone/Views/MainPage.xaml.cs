@@ -61,13 +61,8 @@ namespace DHL_clone
             }
             else
             {
-                new MessageDialog("Username and / or password does not match an account!").ShowAsync();
+                await new MessageDialog("Username and / or password does not match an account!").ShowAsync();
             }
-        }
-
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(RegisterPage));
         }
     }
 }

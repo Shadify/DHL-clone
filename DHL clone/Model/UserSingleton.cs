@@ -7,7 +7,7 @@ using DHL_clone.Model;
 
 namespace DHL_clone.ViewModel
 {
-    class UserSingleton
+    public class UserSingleton
     {
         static UserSingleton() { }
         private static UserSingleton _instance = new UserSingleton();

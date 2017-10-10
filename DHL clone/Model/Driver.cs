@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DHL_clone.Model
 {
-    class Driver
+    public class Driver
     {
         public int Id { get; set; }
         public string Name { get; set; }

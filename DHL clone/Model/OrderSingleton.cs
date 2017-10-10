@@ -9,7 +9,7 @@ using DHL_clone.ViewModel;
 
 namespace DHL_clone.Model
 {
-    class OrderSingleton
+    public class OrderSingleton
     {
         private static OrderSingleton _instance;
 
