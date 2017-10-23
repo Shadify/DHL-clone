@@ -41,6 +41,8 @@
                                         <TextBlock Text="{Binding Name}"/>
                                         <TextBlock Text="Product Price" />
                                         <TextBlock Text="{Binding Price}" />
+                                        <TextBlock Text="Product Quantity" />
+                                        <TextBlock Text="{Binding Quantity}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

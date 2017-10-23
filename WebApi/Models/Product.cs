@@ -20,5 +20,7 @@ namespace WebApi
         public int OrderId { get; set; }
 
         public virtual Order Order { get; set; }
+
+        public int quantity { get; set; }
     }
 }
