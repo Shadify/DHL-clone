@@ -20,8 +20,8 @@
             </Grid.RowDefinitions>
         <TextBlock Text="Info of drivers page"
                        Grid.Row="0"
-                       HorizontalAlignment="Center"/>
-        <ListView Grid.Row="1" Name="DriverList" ItemsSource="{Binding DriverSingleton.Drivers}">
+                       HorizontalAlignment="Center" Height="30"/>
+        <ListView Grid.Row="1" Name="DriverList" ItemsSource="{Binding DriverSingleton.Drivers}" Width="850">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

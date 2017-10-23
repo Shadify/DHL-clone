@@ -29,7 +29,7 @@ namespace DHL_clone.Handler
                 Type = 1
             };
             await Persistency.PersistencyWebApi.Register(user);
-
+            
             UserVM.NewUser.Email = "";
             UserVM.NewUser.Password = "";
             UserVM.NewUser.Name = "";

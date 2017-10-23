@@ -21,7 +21,7 @@
         <TextBlock Text="Orders view page"
                    Grid.Row="0"
                    HorizontalAlignment="Center"/>
-        <Button Grid.Row="0" HorizontalAlignment="Center" Content="Drivers" Click="Button_Click" />
+        <Button Grid.Row="0" HorizontalAlignment="Center" Content="Drivers" Click="Button_Click"/>
         <ListView Grid.Row="1" Name="OrderList" ItemsSource="{Binding OrderSingleton.Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -33,7 +33,18 @@
                         <TextBlock Text="Description" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Description}"/>
                         <TextBlock Text="Products" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Products}" />
+                        <ListView ItemsSource="{Binding Products}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="Product Name" />
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="Product Price" />
+                                        <TextBlock Text="{Binding Price}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                         <TextBlock Text="Driver Name" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Driver.Name}"/>
                         <TextBlock Text="Driver Phone Number" FontWeight="Bold"/>
