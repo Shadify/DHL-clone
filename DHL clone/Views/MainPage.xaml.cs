@@ -52,7 +52,7 @@ namespace DHL_clone
                     }
                     case 0:
                     {
-                        //  NavigationService.Navigate(typeof(DriverOrderPage))
+                        Frame.Navigate(typeof(AdminPage));
                         break;
                     }
                     default:

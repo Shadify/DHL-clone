@@ -25,9 +25,13 @@ namespace DHL_clone.Views
         public AdminPage()
         {
             this.InitializeComponent();
-            
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DriversPage));
+        }
     }
+
 }
+
