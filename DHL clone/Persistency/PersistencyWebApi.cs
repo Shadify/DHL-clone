@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace DHL_clone.Persistency
 {
-    class PersistencyWebApi
+    public class PersistencyWebApi
     {
         //All orders for one user
         public static async Task<ObservableCollection<OrderDTO>> GetOrdersForUser(int userId)
@@ -33,7 +33,7 @@ namespace DHL_clone.Persistency
                     {
                         string OrdersData = response.Content.ReadAsStringAsync().Result;
 
-                        allOrders = (ObservableCollection<OrderDTO>) JsonConvert.DeserializeObject(OrdersData,
+                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData,
                             typeof(ObservableCollection<OrderDTO>));
                     }
                     return allOrders;
@@ -94,7 +94,7 @@ namespace DHL_clone.Persistency
                     {
                         string Data = response.Content.ReadAsStringAsync().Result;
 
-                        user = (User) JsonConvert.DeserializeObject(Data, typeof(User));
+                        user = (User)JsonConvert.DeserializeObject(Data, typeof(User));
                         return user;
                     }
                     else
@@ -130,10 +130,42 @@ namespace DHL_clone.Persistency
                     {
                         string DriverData = response.Content.ReadAsStringAsync().Result;
 
-                        allDrivers = (ObservableCollection<Driver>) JsonConvert.DeserializeObject(DriverData,
+                        allDrivers = (ObservableCollection<Driver>)JsonConvert.DeserializeObject(DriverData,
                             typeof(ObservableCollection<Driver>));
                     }
                     return allDrivers;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        //Get users
+        public static async Task<ObservableCollection<User>> GetUsers()
+        {
+            ObservableCollection<User> allUsers = new ObservableCollection<User>();
+            const string ServerUrl = "http://localhost:6738";
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = client.GetAsync($"api/Users").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string UsersData = response.Content.ReadAsStringAsync().Result;
+
+                        allUsers = (ObservableCollection<User>)JsonConvert.DeserializeObject(UsersData,
+                            typeof(ObservableCollection<User>));
+                    }
+                    return allUsers;
                 }
                 catch (Exception ex)
                 {

@@ -17,7 +17,6 @@ namespace DHL_clone.ViewModel
 
         private UserSingleton()
         {
-
         }
     }
 }

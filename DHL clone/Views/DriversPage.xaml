@@ -21,6 +21,7 @@
         <TextBlock Text="Info of drivers page"
                        Grid.Row="0"
                        HorizontalAlignment="Center" Height="30"/>
+        <Button Grid.Row="0" HorizontalAlignment="Center" Margin="0,60,0,0" Width="50" Height="30" Content="Back" Click="Button_Click" />
         <ListView Grid.Row="1" Name="DriverList" ItemsSource="{Binding DriverSingleton.Drivers}" Width="850">
             <ListView.ItemTemplate>
                 <DataTemplate>
