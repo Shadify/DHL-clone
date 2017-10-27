@@ -13,11 +13,12 @@ namespace DHL_clone.Persistency
 {
     public class PersistencyWebApi
     {
+        const string ServerUrl = "http://localhost:6738";
+
         //All orders for one user
         public static async Task<ObservableCollection<OrderDTO>> GetOrdersForUser(int userId)
         {
             ObservableCollection<OrderDTO> allOrders = new ObservableCollection<OrderDTO>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -48,7 +49,6 @@ namespace DHL_clone.Persistency
         //Registration
         public static async Task<User> Register(User User)
         {
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -75,7 +75,6 @@ namespace DHL_clone.Persistency
         //Login
         public static async Task<User> Login(User User)
         {
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
             User user = new User();
@@ -114,7 +113,6 @@ namespace DHL_clone.Persistency
         public static async Task<ObservableCollection<Driver>> GetDrivers()
         {
             ObservableCollection<Driver> allDrivers = new ObservableCollection<Driver>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -146,7 +144,6 @@ namespace DHL_clone.Persistency
         public static async Task<ObservableCollection<User>> GetUsers()
         {
             ObservableCollection<User> allUsers = new ObservableCollection<User>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -166,6 +163,37 @@ namespace DHL_clone.Persistency
                             typeof(ObservableCollection<User>));
                     }
                     return allUsers;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        //All orders for admin page
+        public static async Task<ObservableCollection<OrderDTO>> GetAllOrders()
+        {
+            ObservableCollection<OrderDTO> allOrders = new ObservableCollection<OrderDTO>();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = client.GetAsync($"api/Orders").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string OrdersData = response.Content.ReadAsStringAsync().Result;
+
+                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData,
+                            typeof(ObservableCollection<OrderDTO>));
+                    }
+                    return allOrders;
                 }
                 catch (Exception ex)
                 {
