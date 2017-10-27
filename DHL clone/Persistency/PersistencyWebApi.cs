@@ -168,5 +168,36 @@ namespace DHL_clone.Persistency
                 }
             }
         }
+
+        //All orders for admin page
+        public static async Task<ObservableCollection<OrderDTO>> GetAllOrders()
+        {
+            ObservableCollection<OrderDTO> allOrders = new ObservableCollection<OrderDTO>();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = client.GetAsync($"api/Orders").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string OrdersData = response.Content.ReadAsStringAsync().Result;
+
+                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData,
+                            typeof(ObservableCollection<OrderDTO>));
+                    }
+                    return allOrders;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
