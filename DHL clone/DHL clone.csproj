@@ -101,7 +101,7 @@
     <Compile Include="Model\DriverSingleton.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDTO.cs" />
-    <Compile Include="Model\OrderSingleton.cs" />
+    <Compile Include="Model\OrderDTOSingleton.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Persistency\Persistency.cs" />

@@ -9,17 +9,17 @@ using DHL_clone.ViewModel;
 
 namespace DHL_clone.Model
 {
-    public class OrderSingleton
+    public class OrderDTOSingleton
     {
-        private static OrderSingleton _instance;
+        private static OrderDTOSingleton _instance;
 
-        public static OrderSingleton Instance
+        public static OrderDTOSingleton Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new OrderSingleton();
+                    _instance = new OrderDTOSingleton();
                 }
                 return _instance;
             }
@@ -28,7 +28,7 @@ namespace DHL_clone.Model
 
         public ObservableCollection<OrderDTO> Orders { get; set; }
 
-        private OrderSingleton()
+        private OrderDTOSingleton()
         {
             Orders = new ObservableCollection<OrderDTO>();
             GetData();

@@ -20,11 +20,11 @@ namespace DHL_clone.ViewModel
         //    set { _newOrder = value; OnPropertyChanged(); }
         //}
 
-        public OrderSingleton OrderSingleton { get; set; }
+        public OrderDTOSingleton OrderSingleton { get; set; }
 
         public OrderVM()
         {
-            OrderSingleton = OrderSingleton.Instance;
+            OrderSingleton = OrderDTOSingleton.Instance;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

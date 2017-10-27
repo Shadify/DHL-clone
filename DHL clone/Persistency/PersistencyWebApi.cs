@@ -13,11 +13,12 @@ namespace DHL_clone.Persistency
 {
     public class PersistencyWebApi
     {
+        const string ServerUrl = "http://localhost:6738";
+
         //All orders for one user
         public static async Task<ObservableCollection<OrderDTO>> GetOrdersForUser(int userId)
         {
             ObservableCollection<OrderDTO> allOrders = new ObservableCollection<OrderDTO>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -33,8 +34,7 @@ namespace DHL_clone.Persistency
                     {
                         string OrdersData = response.Content.ReadAsStringAsync().Result;
 
-                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData,
-                            typeof(ObservableCollection<OrderDTO>));
+                        allOrders = (ObservableCollection<OrderDTO>)JsonConvert.DeserializeObject(OrdersData, typeof(ObservableCollection<OrderDTO>));
                     }
                     return allOrders;
                 }
@@ -48,7 +48,6 @@ namespace DHL_clone.Persistency
         //Registration
         public static async Task<User> Register(User User)
         {
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -75,7 +74,6 @@ namespace DHL_clone.Persistency
         //Login
         public static async Task<User> Login(User User)
         {
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
             User user = new User();
@@ -89,7 +87,7 @@ namespace DHL_clone.Persistency
                     new StringContent(JsonConvert.SerializeObject(User), Encoding.UTF8, "application/json");
                 try
                 {
-                    var response = client.PostAsync($"api/Users/login", content).Result;
+                    var response = client.PostAsync("api/Users/login", content).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         string Data = response.Content.ReadAsStringAsync().Result;
@@ -114,7 +112,6 @@ namespace DHL_clone.Persistency
         public static async Task<ObservableCollection<Driver>> GetDrivers()
         {
             ObservableCollection<Driver> allDrivers = new ObservableCollection<Driver>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -125,7 +122,7 @@ namespace DHL_clone.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    var response = client.GetAsync($"api/Drivers").Result;
+                    var response = client.GetAsync("api/Drivers").Result;
                     if (response.IsSuccessStatusCode)
                     {
                         string DriverData = response.Content.ReadAsStringAsync().Result;
@@ -146,7 +143,6 @@ namespace DHL_clone.Persistency
         public static async Task<ObservableCollection<User>> GetUsers()
         {
             ObservableCollection<User> allUsers = new ObservableCollection<User>();
-            const string ServerUrl = "http://localhost:6738";
             HttpClientHandler handler = new HttpClientHandler();
             handler.UseDefaultCredentials = true;
 
@@ -162,8 +158,7 @@ namespace DHL_clone.Persistency
                     {
                         string UsersData = response.Content.ReadAsStringAsync().Result;
 
-                        allUsers = (ObservableCollection<User>)JsonConvert.DeserializeObject(UsersData,
-                            typeof(ObservableCollection<User>));
+                        allUsers = (ObservableCollection<User>)JsonConvert.DeserializeObject(UsersData, typeof(ObservableCollection<User>));
                     }
                     return allUsers;
                 }

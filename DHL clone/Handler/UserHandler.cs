@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using DHL_clone.Model;
 using DHL_clone.ViewModel;
 
@@ -28,8 +29,14 @@ namespace DHL_clone.Handler
                 Address = UserVM.NewUser.Address,
                 Type = 1
             };
-            await Persistency.PersistencyWebApi.Register(user);
-            
+            if (user.Phone == 0)
+            {
+                await new MessageDialog("Phone number wrong format").ShowAsync();
+            }
+            else
+            {
+                await Persistency.PersistencyWebApi.Register(user);
+            }
             UserVM.NewUser.Email = "";
             UserVM.NewUser.Password = "";
             UserVM.NewUser.Name = "";
